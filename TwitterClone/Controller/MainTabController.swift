@@ -11,7 +11,7 @@ class MainTabController: UITabBarController {
 
     //MARK: - Properties
     
-    private let actionButton: UIButton = {
+    private lazy var actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.backgroundColor = .twitterBlue
@@ -19,7 +19,6 @@ class MainTabController: UITabBarController {
         button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
         return button
     }()
-    
     
   
     
