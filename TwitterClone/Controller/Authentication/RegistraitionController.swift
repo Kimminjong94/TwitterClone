@@ -79,7 +79,7 @@ class RegistraitionController: UIViewController {
         return tf
         
     }()
-
+    
     
     private lazy var alreadyHaveAccountButton: UIButton = {
         let button = Utilities().attributtedButton("Alredy have an acoount?", "  Log In")
@@ -125,82 +125,80 @@ class RegistraitionController: UIViewController {
         guard let password = passwordTextField.text else {return}
         guard let fullname = fullNameTextField.text else {return}
         guard let username = userNameTextField.text else {return}
+    
 
-
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print("Error is \(error.localizedDescription)")
+        AuthService.shared.registerUser(credentials: AuthCredentials(email: email,password: password,fullName: fullname,userName: username, profileImage: profileImage)) { (error, ref) in
+            guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else {
                 return
             }
-
-            guard let uid = result?.user.uid else {return}
-            let values = ["email": email, "username": username, "fullname": fullname]
-            let ref = Database.database().reference().child("users").child(uid)
             
-            ref.updateChildValues(values) { (error, ref) in
-                print("Debug Successfully updated")
+            guard let tab = window.rootViewController as? MainTabController else {return}
+            tab.authenticateUserAndConfigureUI()
             
+            self.dismiss(animated: true,completion: nil)
         }
 
-    
+      
     }
-    
-    //MARK: - Helpers
-    
-    func configureUI() {
-        view.backgroundColor = .twitterBlue
-        
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = true
 
-        view.addSubview(plusPhotoButton)
-        plusPhotoButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
-        plusPhotoButton.setDimensions(width: 150, height: 150)
+        //MARK: - Helpers
         
-        let stack = UIStackView(arrangedSubviews: [emailContainerView,
-                                                   passwordContainerView,
-                                                   fullNameContainerView,
-                                                   userNameContainerView,
-                                                  registrationButton])
-        stack.axis = .vertical
-        stack.spacing = 20
-        stack.distribution = .fillEqually
-        
-        view.addSubview(stack)
-        stack.anchor(top: plusPhotoButton.bottomAnchor,
-                     left: view.leftAnchor,
-                     right: view.rightAnchor,
-                     paddingTop: 32,
-                     paddingLeft: 32,
-                     paddingRight: 32)
-        
-        view.addSubview(alreadyHaveAccountButton)
-        alreadyHaveAccountButton.anchor(left: view.leftAnchor,
-                                     bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                                     right: view.rightAnchor,
-                                     paddingLeft: 40,
-                                     paddingRight: 40)
+        func configureUI() {
+            view.backgroundColor = .twitterBlue
+            
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            
+            view.addSubview(plusPhotoButton)
+            plusPhotoButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
+            plusPhotoButton.setDimensions(width: 150, height: 150)
+            
+            let stack = UIStackView(arrangedSubviews: [emailContainerView,
+                                                       passwordContainerView,
+                                                       fullNameContainerView,
+                                                       userNameContainerView,
+                                                       registrationButton])
+            stack.axis = .vertical
+            stack.spacing = 20
+            stack.distribution = .fillEqually
+            
+            view.addSubview(stack)
+            stack.anchor(top: plusPhotoButton.bottomAnchor,
+                         left: view.leftAnchor,
+                         right: view.rightAnchor,
+                         paddingTop: 32,
+                         paddingLeft: 32,
+                         paddingRight: 32)
+            
+            view.addSubview(alreadyHaveAccountButton)
+            alreadyHaveAccountButton.anchor(left: view.leftAnchor,
+                                            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                                            right: view.rightAnchor,
+                                            paddingLeft: 40,
+                                            paddingRight: 40)
+        }
     }
-}
 
-//MARK: - UIImagePickerControllerDelegate
-
-extension RegistraitionController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let profileImage = info[.editedImage] as? UIImage else {return}
-        self.profileImage = profileImage
+    //MARK: - UIImagePickerControllerDelegate
+    
+    extension RegistraitionController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
-        
-        plusPhotoButton.layer.cornerRadius = 150 / 2
-        plusPhotoButton.layer.masksToBounds = true
-        plusPhotoButton.imageView?.contentMode = .scaleAspectFill
-        plusPhotoButton.imageView?.clipsToBounds = true
-        plusPhotoButton.layer.borderColor = UIColor.black.cgColor
-        plusPhotoButton.layer.borderWidth = 3
-        
-        self.plusPhotoButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
-        
-        dismiss(animated: true, completion: nil)
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            guard let profileImage = info[.editedImage] as? UIImage else {return}
+            self.profileImage = profileImage
+            
+            
+            plusPhotoButton.layer.cornerRadius = 150 / 2
+            plusPhotoButton.layer.masksToBounds = true
+            plusPhotoButton.imageView?.contentMode = .scaleAspectFill
+            plusPhotoButton.imageView?.clipsToBounds = true
+            plusPhotoButton.layer.borderColor = UIColor.black.cgColor
+            plusPhotoButton.layer.borderWidth = 3
+            
+            self.plusPhotoButton.setImage(profileImage.withRenderingMode(.alwaysOriginal), for: .normal)
+            
+            dismiss(animated: true, completion: nil)
+        }
     }
-}
+

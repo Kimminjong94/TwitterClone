@@ -11,6 +11,8 @@
 		5800A87F29A34CD600F71125 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5800A87E29A34CD600F71125 /* Utilities.swift */; };
 		58041AAA29A30CE800BF177F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58041AA929A30CE800BF177F /* LoginController.swift */; };
 		58041AAC29A30D4800BF177F /* RegistraitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58041AAB29A30D4800BF177F /* RegistraitionController.swift */; };
+		589FB78329A8444B0033BE36 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FB78229A8444B0033BE36 /* Constants.swift */; };
+		589FB78529A862770033BE36 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589FB78429A862770033BE36 /* AuthService.swift */; };
 		58B458F329A591D300EFE65F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58B458F229A591D300EFE65F /* GoogleService-Info.plist */; };
 		58C92D73299F63E700BBE566 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C92D72299F63E700BBE566 /* AppDelegate.swift */; };
 		58C92D75299F63E700BBE566 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C92D74299F63E700BBE566 /* SceneDelegate.swift */; };
@@ -30,6 +32,8 @@
 		5800A87E29A34CD600F71125 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		58041AA929A30CE800BF177F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		58041AAB29A30D4800BF177F /* RegistraitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistraitionController.swift; sourceTree = "<group>"; };
+		589FB78229A8444B0033BE36 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		589FB78429A862770033BE36 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		58B458F229A591D300EFE65F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		58C92D6F299F63E700BBE566 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C92D72299F63E700BBE566 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 			children = (
 				58C92D98299F77E600BBE566 /* Extensions.swift */,
 				5800A87E29A34CD600F71125 /* Utilities.swift */,
+				589FB78229A8444B0033BE36 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 		58C92D87299F642600BBE566 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				589FB78429A862770033BE36 /* AuthService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -163,7 +169,6 @@
 				B980FEF1DFD8A065BA9C5BB6 /* Pods-TwitterClone.debug.xcconfig */,
 				2B8DC1136D7BB0E2EF024B5F /* Pods-TwitterClone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -297,11 +302,13 @@
 				58C92D93299F66F300BBE566 /* ExploreController.swift in Sources */,
 				58C92D99299F77E600BBE566 /* Extensions.swift in Sources */,
 				58041AAA29A30CE800BF177F /* LoginController.swift in Sources */,
+				589FB78529A862770033BE36 /* AuthService.swift in Sources */,
 				58C92D75299F63E700BBE566 /* SceneDelegate.swift in Sources */,
 				58C92D8F299F64F600BBE566 /* MainTabController.swift in Sources */,
 				58C92D97299F671100BBE566 /* ConversationController.swift in Sources */,
 				58041AAC29A30D4800BF177F /* RegistraitionController.swift in Sources */,
 				58C92D91299F66B400BBE566 /* FeedController.swift in Sources */,
+				589FB78329A8444B0033BE36 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

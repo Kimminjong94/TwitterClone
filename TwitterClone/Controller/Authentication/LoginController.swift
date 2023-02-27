@@ -75,14 +75,34 @@ class LoginController: UIViewController {
     
     //MARK: - Seclector
     
-    @objc func handleLogin() {
+    @objc func handleShowSignUp() {
+        print("handle signUp")
         let controller = RegistraitionController()
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    @objc func handleShowSignUp() {
-        print("handle signUp")
+    @objc func handleLogin() {
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        
+        AuthService.shared.logUserIn(withEmail: email, password: password, completion: { (result, error) in
+            if let error = error {
+                print("DEBUG Error logging in \(error.localizedDescription)")
+                return
+            }
+            
+            guard let window = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) else {
+                return
+            }
+            
+            guard let tab = window.rootViewController as? MainTabController else {return}
+            tab.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true,completion: nil)
+        })
     }
+    
+    
     
     //MARK: - Helpers
     
