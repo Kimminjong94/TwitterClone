@@ -1,0 +1,13 @@
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <path d="M18 25.778c.545 0 1.008-.35 1.056-.813.098-.965.15-1.96.15-2.98 0-6.048-1.806-11.305-4.462-13.985v17.778H18zM14.744 40.593V25.778" stroke="#5A5A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path fill="#345CF8" d="M27.26 8v10.005"/>
+        <path stroke="#5A5A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M27.26 8v10.005"/>
+        <path fill="#345CF8" d="M30.364 8v10.005"/>
+        <path stroke="#5A5A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M30.364 8v10.005"/>
+        <path fill="#345CF8" d="M33.468 8v10.005"/>
+        <path stroke="#5A5A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M33.468 8v10.005"/>
+        <path stroke="#5A5A5F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M27.229 18.398h6.208"/>
+        <path stroke="#5A5A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M30.333 18.928v21.665"/>
+    </g>
+</svg>
