@@ -12,6 +12,14 @@ class MainTabController: UITabBarController {
 
     //MARK: - Properties
     
+    var user: User? {
+        didSet {
+            guard let nav = viewControllers?[0] as? UINavigationController else {return}
+            guard let feed = nav.viewControllers.first as? FeedController else {return}
+            
+            feed.user = user
+        }
+    }
     private lazy var actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
@@ -34,6 +42,13 @@ class MainTabController: UITabBarController {
     
     //MARK: - API
     
+    func fetchUser() {
+        UserService.shared.fetchUser { user in
+            self.user = user
+            
+        }
+    }
+    
     func authenticateUserAndConfigureUI() {
         if Auth.auth().currentUser == nil {
             DispatchQueue.main.async {
@@ -46,6 +61,7 @@ class MainTabController: UITabBarController {
         } else {
             configureViewcontrollers()
             configureUI()
+            fetchUser()
         }
         
     }
@@ -61,7 +77,11 @@ class MainTabController: UITabBarController {
     //MARK: - Selectors
     
     @objc func actionButtonTapped() {
-        print(123)
+        guard let user = user else {return}
+        let controller = UploadTweetController(user: user)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     
@@ -93,7 +113,7 @@ class MainTabController: UITabBarController {
     func templateNavigaitionController(image: UIImage?, rootViewController: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: rootViewController)
         nav.tabBarItem.image = image
-        nav.navigationBar.barTintColor = .red
+        nav.navigationBar.barTintColor = .white
         return nav
         
     }
