@@ -55,7 +55,7 @@ class ProfileHeader: UICollectionReusableView {
         return iv
     }()
     
-    private lazy var editProfileFollowButton: UIButton = {
+    lazy var editProfileFollowButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Loading", for: .normal)
         button.layer.borderColor = UIColor.black.cgColor
@@ -192,6 +192,8 @@ class ProfileHeader: UICollectionReusableView {
     
     func configure() {
         guard let user = user else {return}
+        
+        print("Debug useris in profile vidwe")
         
         let viewModel = ProfileHeaderViewModel(user: user)
         
